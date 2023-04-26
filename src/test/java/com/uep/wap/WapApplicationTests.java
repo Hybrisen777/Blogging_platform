@@ -1,10 +1,10 @@
-package com.example.blogging_platform;
+package com.uep.wap;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BloggingPlatformApplicationTests {
+class WapApplicationTests {
 
     @Test
     void contextLoads() {
