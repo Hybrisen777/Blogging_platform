@@ -21,4 +21,6 @@ public class BlogController {
     public String showBlog(){
         return "Tu bedzie blog!";
     }
+
+
 }
