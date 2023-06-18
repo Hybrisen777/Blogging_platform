@@ -20,7 +20,8 @@ public class BlogController {
     @GetMapping(path = "/blog")
     public String showBlog(){
 
-        return blogService.getAllBlogs().toString() + "xd";
+        return
+                /*blogService.getAllBlogs().toString() + */"xd";
     }
 
     @PostMapping(path = "/blogs")
