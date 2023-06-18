@@ -10,12 +10,20 @@
 </head>
 <body>
 <div class="container">
+
   <h1><a th:href="@{/}">Web Application Project Blogging Platform</a></h1>
+  <hr/>
+  <div style="white-space: nowrap;">
+    <h2><a th:href="@{/register}" th:class="link">Register</a></h2>
+    <h2>•</h2>
+    <h2><a th:href="@{/login}" th:class="link">Login</a></h2>
+  </div>
   <hr/>
   <div class="posts-container">
       <div class="post" th:each="post : ${posts}">
         <h2><a th:href="@{'/posts/' + ${post.id}}"
                th:text="${post.title}">Title</a></h2>
+        <h5 th:text="'Author: ' + ${post.account.username}">Account Name</h5>
         <h5 th:text="'Time: ' + ${post.createdAt}">Created At</h5>
         <p th:text="${post.content}">body text</p>
         <br>

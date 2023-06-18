@@ -10,6 +10,7 @@ h1 {
 h2 {
     font-size: 27px;
     font-family: "Arial", sans-serif;
+    display: inline;
 }
 
 h5 {
@@ -28,4 +29,9 @@ body a {
 
 body a:hover {
     text-decoration: underline;
+}
+
+.link {
+    display: inline;
+    white-space: nowrap;
 }

@@ -1,5 +1,6 @@
 package com.uep.wap.model;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -26,4 +27,9 @@ public class Post {
     @CreationTimestamp
     private LocalDateTime createdAt;
     //private LocalDateTime updatedAt;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "account_id", referencedColumnName = "id", nullable=false)
+    private Account account;
 }
