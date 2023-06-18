@@ -17,9 +17,7 @@ public class Blog {
     @Id
     @Column(name ="blog_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long blog_id;
-
-
+    private Long id;
 
 
     @OneToOne(mappedBy = "blog", cascade = CascadeType.ALL)
