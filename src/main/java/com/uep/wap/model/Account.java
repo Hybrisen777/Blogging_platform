@@ -20,8 +20,8 @@ public class Account {
 
     //TODO dokonczyc reszte klas
 
-//    @OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
-//    private List<Comment> comments;
+    @OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
+    private List<Comment> comments;
 
     @OneToOne
     @JoinColumn(name = "blog_id")

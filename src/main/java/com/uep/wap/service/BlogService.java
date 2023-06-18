@@ -20,7 +20,7 @@ public class BlogService {
         System.out.println("Blog added!");
     }
 
-//    public Iterable<Blog> getAllBlogs() {
-//        return blogRepository.findAll();
-//    }
+    public Iterable<Blog> getAllBlogs() {
+        return blogRepository.findAll();
+    }
 }

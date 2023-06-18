@@ -1,8 +1,13 @@
 package com.uep.wap.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
 public class Statistics {
 
     @Id
@@ -16,11 +21,4 @@ public class Statistics {
     @JoinColumn(name = "blog_id")
     private Blog blog;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
 }

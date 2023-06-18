@@ -19,14 +19,18 @@ public class BlogController {
 
     @GetMapping(path = "/blog")
     public String showBlog(){
-        return "Tu bedzie blog!";
+
+        return blogService.getAllBlogs().toString() + "xd";
     }
 
-    @PostMapping(path = "/students")
+    @PostMapping(path = "/blogs")
     public String addBlog(@RequestBody BlogDTO blogDTO){
         blogService.addBlog(blogDTO);
         return "Students added!";
     }
+
+
+
 
 }
 
