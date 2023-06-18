@@ -1,10 +1,15 @@
 package com.uep.wap.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class User {
+@Getter
+@Setter
+public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,18 +20,11 @@ public class User {
 
     //TODO dokonczyc reszte klas
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
     private List<Comment> comments;
 
     @OneToOne
     @JoinColumn(name = "blog_id")
     private Blog blog;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
 }

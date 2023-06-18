@@ -1,7 +1,12 @@
 package com.uep.wap.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 @Entity
+@Getter
+@Setter
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,19 +17,11 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "author_id")
-    private User user;
+    private Account account;
 
-    //TODO dokonczyc reszte klas
-    //jakos pomyslec z autorem komentarza
 
     @ManyToOne
     @JoinColumn(name = "blog_id")
     private Blog blog;
 
-    public void setCom_id(Long id) {
-        this.com_id = id;
-    }
-    public Long getCom_id() {
-        return com_id;
-    }
 }
