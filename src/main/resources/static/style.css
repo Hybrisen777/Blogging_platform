@@ -1,0 +1,23 @@
+hr {
+    border: 5px solid black;
+}
+
+h1 {
+    font-size: 50px;
+    font-family: "Arial", sans-serif;
+}
+
+h2 {
+    font-size: 27px;
+    font-family: "Arial", sans-serif;
+}
+
+h5 {
+    font-size: 11px;
+    font-family: "Arial", sans-serif;
+}
+
+p {
+    font-size: 18px;
+    font-family: "Arial", sans-serif;
+}

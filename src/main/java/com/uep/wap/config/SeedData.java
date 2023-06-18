@@ -18,8 +18,8 @@ public class SeedData implements CommandLineRunner {
 
          if (posts.size() == 0) {
              Post post1 = new Post();
-             post1.setTitle("What is Lorem Ipsum?");
-             post1.setContent("Lorem ipsum dolor sit amet");
+             post1.setTitle("Przykładowy post zachęcający internautę do kliknięcia");
+             post1.setContent("Niestety, użytkownik klikający w hiperłącze zostanie przekierowany donikąd, miejmy nadzieję na zmianę tego stanu rzeczy w niedalekiej przyszłości.");
 
              postService.createPost(post1);
          }
