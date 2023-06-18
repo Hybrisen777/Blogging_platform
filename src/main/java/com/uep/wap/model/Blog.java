@@ -39,9 +39,7 @@ public class Blog {
     @Column(name = "comments")
     private List<Comment> comments;
 
-    @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
-    @Column(name = "posts")
-    private List<Post> posts;
-
-
+    //tu jest klasa java.sql.Date
+    @Column(name = "time")
+    private Date time;
 }
