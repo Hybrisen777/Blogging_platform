@@ -1,10 +1,15 @@
 package com.uep.wap.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @Table(name="blogs")
 public class Blog {
     private Long blog_id;
@@ -22,7 +27,7 @@ public class Blog {
 
     @Column(name = "author")
     @OneToOne(mappedBy = "blog", cascade = CascadeType.ALL)
-    private User author;
+    private Account author;
 
     @Column(name = "content")
     private String content;

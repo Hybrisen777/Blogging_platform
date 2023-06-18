@@ -1,10 +1,10 @@
 package com.uep.wap.controller;
 
 
+import com.uep.wap.dto.BlogDTO;
+import com.uep.wap.dto.StudentDTO;
 import com.uep.wap.service.BlogService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/api")
@@ -22,5 +22,12 @@ public class BlogController {
         return "Tu bedzie blog!";
     }
 
+    @PostMapping(path = "/students")
+    public String addBlog(@RequestBody BlogDTO blogDTO){
+        blogService.addBlog(blogDTO);
+        return "Students added!";
+    }
 
 }
+
+
