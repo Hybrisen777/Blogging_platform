@@ -1,7 +1,6 @@
 package com.uep.wap.model;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.util.List;
 
 @Entity
@@ -22,7 +21,7 @@ public class Blog {
 
     @Column(name = "author")
     @OneToOne(mappedBy = "blog", cascade = CascadeType.ALL)
-    private User author;
+    private Account author;
 
     @Column(name = "content")
     private String content;

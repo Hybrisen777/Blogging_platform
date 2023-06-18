@@ -12,7 +12,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "author_id")
-    private User user;
+    private Account account;
 
     //TODO dokonczyc reszte klas
     //jakos pomyslec z autorem komentarza
