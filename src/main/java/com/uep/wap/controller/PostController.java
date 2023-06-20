@@ -23,13 +23,19 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String getPost(@PathVariable Long id, Model model) {
+        //szukanie posta po id
         Optional<Post> optionalPost = postService.getPostById(id);
+        //jeśli post istnieje, dodaj go do modelu
+        if (optionalPost.isPresent()) {
         Post post = optionalPost.get();
         model.addAttribute("post", post);
         return "post";
+        } else {
+            return "404";
+        }
     }
 
-    @GetMapping("/post/create")
+    @GetMapping("/posts/create")
     public String createNewPost(Model model) {
         //konto user podpięte jako obecny autor wszystkich tworzonych postów
         Optional<Account> optionalAccount = accountService.findByUsername("user");
@@ -40,11 +46,11 @@ public class PostController {
             return "post_create";
         } else {
             //do zrobienia- strona obsługująca błędy
-            return "error";
+            return "404";
         }
     }
 
-    @PostMapping("/post/create")
+    @PostMapping("/posts/create")
     public String saveNewPost(@ModelAttribute Post post) {
         postService.save(post);
         return "redirect:/posts/" + post.getId();

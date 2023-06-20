@@ -20,19 +20,19 @@ public class BlogController {
         this.blogService = blogService;
     }
 
-    @GetMapping(path = "/blog/{id}")
-    public String showBlog(@PathVariable Long id, Model model){
-        Optional<Blog> optionalPost = blogService.getBlogById(id);
-        Blog post = optionalPost.get();
-        model.addAttribute("post", post);
-        return "blog";
-    }
+//    @GetMapping(path = "/blog/{id}")
+//    public String showBlog(@PathVariable Long id, Model model){
+//        Optional<Blog> optionalPost = blogService.getBlogById(id);
+//        Blog post = optionalPost.get();
+//        model.addAttribute("post", post);
+//        return "blog";
+//    }
 
-    @PostMapping(path = "/blogs")
-    public String addBlog(@RequestBody BlogDTO blogDTO){
-        blogService.addBlog(blogDTO);
-        return "Blogs added!";
-    }
+//    @PostMapping(path = "/blogs")
+//    public String addBlog(@RequestBody BlogDTO blogDTO){
+//        blogService.addBlog(blogDTO);
+//        return "Blogs added!";
+//    }
 
 
 

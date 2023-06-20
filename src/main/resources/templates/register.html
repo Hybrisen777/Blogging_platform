@@ -13,7 +13,10 @@
   <h1><a th:href="@{/}">Web Application Project Blogging Platform</a></h1>
   <hr/>
   <h2>Register New Account</h2>
-    <form action="#" th:action="@{/register}" th:object="${account}" method="post">
+    <form action="#"
+          th:action="@{/register}"
+          th:object="${account}"
+          method="POST">
       <div>
         <label for="username">Username</label>
         <input id="username" type="text" th:field="*{username}" placeholder="Username"/>

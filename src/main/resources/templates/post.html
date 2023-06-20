@@ -14,10 +14,28 @@
   <hr/>
   <div class="post">
       <h2 th:text="${post.title}">Title</h2>
-      <h5 th:text="'Time: ' + ${post.createdAt}">Created At</h5>
+      <h5 th:text="'Napisane przez: ' + ${post.account.username}">Account username</h5>
+      <h5 th:text="'Czas dodania: ' + ${post.createdAt}">Created At</h5>
       <p th:text="${post.content}">content text</p>
   </div>
   <hr/>
+    <form action="#"
+          th:action="@{'/posts/create'}"
+          th:object="${post}"
+          method="POST">
+        <input type="hidden" th:field="*{account}" />
+        <input type="hidden" th:field="*{createdAt}" />
+        <h2>Add comment</h2>
+        <div>
+            <label for="new-post-title">Title</label>
+            <input id="new-post-title" type="text" th:field="*{title}" placeholder="Title"/>
+        </div>
+        <div>
+            <label for="new-post-body">Body</label>
+            <textarea id="new-post-body" th:field="*{content}"></textarea>
+        </div>
+        <button type="submit">Opublikuj komentarz</button>
+    </form>
 </div>
 </body>
 </html>

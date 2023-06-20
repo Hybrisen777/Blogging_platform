@@ -5,7 +5,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -14,7 +16,7 @@ import java.util.List;
 public class Account {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column(name = "username")
@@ -34,5 +36,20 @@ public class Account {
     @OneToOne
     @JoinColumn(name = "blog_id")
     private Blog blog;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "account_authority",
+        joinColumns = {@JoinColumn(name = "account_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "name")})
+    private Set<Authority> authorities = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "Account{" +
+            ", username='" + username + "'" +
+            ", password='" + password + "'" +
+            ", authorities=" + authorities +
+        "}";
+    }
 
 }
