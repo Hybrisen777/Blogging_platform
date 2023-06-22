@@ -26,10 +26,26 @@ public class Post {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
-    //private LocalDateTime updatedAt;
+
+    private LocalDateTime updatedAt;
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", title='" + title + "'" +
+                ", body='" + content + "'" +
+                ", createdAt='" + createdAt + "'" +
+                ", updatedAt='" + updatedAt + "'" +
+                "}";
+    }
+
+
 
     @NotNull
     @ManyToOne
     @JoinColumn(name = "account_id", referencedColumnName = "id", nullable=false)
     private Account account;
+
+
+
 }

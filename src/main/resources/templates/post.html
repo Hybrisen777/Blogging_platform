@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <hr/>
 <head>
   <meta charset="utf-8">
@@ -18,7 +19,13 @@
       <h5 th:text="'Czas dodania: ' + ${post.createdAt}">Created At</h5>
       <p th:text="${post.content}">content text</p>
   </div>
+    <ul sec:authorize="isAuthenticated()">
+        <li><a th:href="@{'/posts/' + ${post.id} + '/edit'}">Edit</a></li>
+        <li><a th:href="@{'/posts/' + ${post.id} + '/delete'}">Delete</a></li>
+    </ul>
   <hr/>
+<!--    placeholder komentowania - zmienic -->
+    <div sec:authorize="isAuthenticated()">
     <form action="#"
           th:action="@{'/posts/create'}"
           th:object="${post}"
@@ -36,6 +43,7 @@
         </div>
         <button type="submit">Opublikuj komentarz</button>
     </form>
+    </div>
 </div>
 </body>
 </html>
