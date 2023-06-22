@@ -8,24 +8,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blogging platform - home page</title>
   <link th:href="@{/style.css}" rel="stylesheet" />
+  <link rel="shortcut icon" type="image/x-icon" th:href="@{/icon.png}" />
 </head>
 <body>
 <div class="container">
+  <div style="white-space: nowrap;">
+  <a th:href="@{/}">
+    <img src="resources/static/icon.png" alt="logo">
+  </a>
+    <h1><a th:href="@{/}">Web Application Project Blogging Platform</a></h1>
+  </div>
 
-  <h1><a th:href="@{/}">Web Application Project Blogging Platform</a></h1>
   <hr/>
   <div sec:authorize="!isAuthenticated()" style="white-space: nowrap;">
       <h2><a th:href="@{/register}" th:class="link">Register</a></h2>
       <h2>•</h2>
       <h2><a th:href="@{/login}" th:class="link">Login</a></h2>
-      <h2>•</h2>
 
   </div>
   <div sec:authorize="isAuthenticated()">
     <form th:action="@{/logout}"
           method="POST">
       <div>
-        <label>Witaj, <span sec:authentication="name">nazwa_uzytkownika</span></label>
+        <label>Hello, <span sec:authentication="name">nazwa_uzytkownika</span></label>
         <h2><a th:href="@{/posts/create}" th:class="link">Create</a></h2>
       </div>
       <button type="submit">Logout</button>

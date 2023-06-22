@@ -15,8 +15,8 @@
   <hr/>
   <div class="post">
       <h2 th:text="${post.title}">Title</h2>
-      <h5 th:text="'Napisane przez: ' + ${post.account.username}">Account username</h5>
-      <h5 th:text="'Czas dodania: ' + ${post.createdAt}">Created At</h5>
+      <h5 th:text="'Author: ' + ${post.account.username}">Account username</h5>
+      <h5 th:text="'Time: ' + ${post.createdAt}">Created At</h5>
       <p th:text="${post.content}">content text</p>
   </div>
     <ul sec:authorize="isAuthenticated()">
@@ -41,7 +41,7 @@
             <label for="new-post-body">Body</label>
             <textarea id="new-post-body" th:field="*{content}"></textarea>
         </div>
-        <button type="submit">Opublikuj komentarz</button>
+        <button type="submit">Comment</button>
     </form>
     </div>
 </div>
