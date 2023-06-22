@@ -56,15 +56,17 @@ public class SeedData implements CommandLineRunner {
              accountService.save(account2);
 
              Post post1 = new Post();
-             post1.setTitle("EA Sports");
-             post1.setContent("It's in the game.");
+             post1.setTitle("Project goals and functionalities");
+             post1.setTag("Passing terms, WAP");
+             post1.setContent("Our web application presents functionalities of a blogging (microblogging) platform. CRUD operations are possible, logged users can create posts, posts are accessed via the main page, author of the post can edit it, users with admin role can delete posts.");
              post1.setAccount(account1);
 
              postService.createPost(post1);
 
              Post post2 = new Post();
-             post2.setTitle("Post admina");
-             post2.setContent("UWAGA TEST");
+             post2.setTitle("Project authors");
+             post2.setTag("WAP, authors");
+             post2.setContent("Jeremi Ranosz & Jan Stachowiak");
              post2.setAccount(account2);
 
              postService.createPost(post2);

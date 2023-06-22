@@ -8,14 +8,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blogging platform - home page</title>
   <link th:href="@{/style.css}" rel="stylesheet" />
-  <link rel="shortcut icon" type="image/x-icon" th:href="@{/icon.png}" />
+  <link rel="shortcut icon" type="image/png" th:href="@{/icon.png}"/>
 </head>
 <body>
 <div class="container">
-  <div style="white-space: nowrap;">
-  <a th:href="@{/}">
-    <img src="resources/static/icon.png" alt="logo">
-  </a>
+  <div>
     <h1><a th:href="@{/}">Web Application Project Blogging Platform</a></h1>
   </div>
 
@@ -24,9 +21,8 @@
       <h2><a th:href="@{/register}" th:class="link">Register</a></h2>
       <h2>•</h2>
       <h2><a th:href="@{/login}" th:class="link">Login</a></h2>
-
   </div>
-  <div sec:authorize="isAuthenticated()">
+  <div sec:authorize="isAuthenticated()" style="white-space:nowrap;">
     <form th:action="@{/logout}"
           method="POST">
       <div>
@@ -43,6 +39,7 @@
                th:text="${post.title}">Title</a></h2>
         <h5 th:text="'Author: ' + ${post.account.username}">Account Name</h5>
         <h5 th:text="'Time: ' + ${post.createdAt}">Created At</h5>
+        <h5 th:text="'Tags: ' + ${post.tag}">tags</h5>
         <p th:text="${post.content}">body text</p>
         <br>
     </div>

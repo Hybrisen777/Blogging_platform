@@ -17,11 +17,12 @@
       <h2 th:text="${post.title}">Title</h2>
       <h5 th:text="'Author: ' + ${post.account.username}">Account username</h5>
       <h5 th:text="'Time: ' + ${post.createdAt}">Created At</h5>
+      <h5 th:text="'Tags: ' + ${post.tag}">Tags</h5>
       <p th:text="${post.content}">content text</p>
   </div>
     <ul sec:authorize="isAuthenticated()">
-        <li><a th:href="@{'/posts/' + ${post.id} + '/edit'}">Edit</a></li>
-        <li><a th:href="@{'/posts/' + ${post.id} + '/delete'}">Delete</a></li>
+        <li><a th:href="@{'/posts/' + ${post.id} + '/edit'}"><button type="submit">Edit</button></a></li>
+        <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/posts/' + ${post.id} + '/delete'}"><button type="submit">Delete</button></a></li>
     </ul>
   <hr/>
 <!--    placeholder komentowania - zmienic -->

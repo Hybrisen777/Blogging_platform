@@ -35,3 +35,19 @@ body a:hover {
     display: inline;
     white-space: nowrap;
 }
+button[type="submit"] {
+    background-color: darkblue;
+    border: none;
+    color: white;
+    padding: 7px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+}

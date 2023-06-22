@@ -6,6 +6,7 @@ import com.uep.wap.service.AccountService;
 import com.uep.wap.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -55,7 +56,6 @@ public class PostController {
             model.addAttribute("post",post);
             return "post_create";
         } else {
-            //do zrobienia- strona obsługująca błędy
             return "redirect:/";
         }
     }
@@ -87,12 +87,14 @@ public class PostController {
 
     @PostMapping("/posts/{id}")
     @PreAuthorize("isAuthenticated()")
-    public String updatePost(@PathVariable Long id, Post post, BindingResult result, Model model) {
+    public String updatePost(@PathVariable Long id, Post post, BindingResult result, Model model, Authentication authentication) {
 
         Optional<Post> optionalPost = postService.getPostById(id);
         if (optionalPost.isPresent()) {
             Post existingPost = optionalPost.get();
-
+            if (!existingPost.getAccount().getUsername().equals(authentication.getName())) {
+                return "post_badAccess.html";
+            }
             existingPost.setTitle(post.getTitle());
             existingPost.setContent(post.getContent());
 
@@ -118,4 +120,6 @@ public class PostController {
             return "404";
         }
     }
+
+
 }

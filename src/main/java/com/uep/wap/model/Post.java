@@ -22,6 +22,9 @@ public class Post {
     private String title;
 
     @Column(nullable = false)
+    private String tag;
+
+    @Column(nullable = false)
     private String content;
 
     @CreationTimestamp
@@ -33,6 +36,7 @@ public class Post {
         return "Post{" +
                 "id=" + id +
                 ", title='" + title + "'" +
+                ", title='" + tag + "'" +
                 ", body='" + content + "'" +
                 ", createdAt='" + createdAt + "'" +
                 ", updatedAt='" + updatedAt + "'" +
