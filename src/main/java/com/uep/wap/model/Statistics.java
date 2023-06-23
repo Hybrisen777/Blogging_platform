@@ -17,8 +17,8 @@ public class Statistics {
     @Column(name = "likes")
     private int likes;
 
-    @OneToOne
-    @JoinColumn(name = "blog_id")
-    private Blog blog;
+//    @OneToOne
+//    @JoinColumn(name = "blog_id")
+//    private Blog blog;
 
 }

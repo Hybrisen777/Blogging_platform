@@ -27,15 +27,15 @@ public class Account {
 
     //TODO dokonczyc reszte klas
 
-    @OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "account")
     private List<Comment> comments;
 
     @OneToMany(mappedBy = "account")
     private List<Post> posts;
 
-    @OneToOne
-    @JoinColumn(name = "blog_id")
-    private Blog blog;
+//    @OneToOne
+//    @JoinColumn(name = "blog_id")
+//    private Blog blog;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "account_authority",

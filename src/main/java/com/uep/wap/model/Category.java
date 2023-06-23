@@ -18,8 +18,8 @@ public class Category {
 
     //TODO dokonczyc reszte klas
 
-    @ManyToOne
-    @JoinColumn(name = "blog_id")
-    private Blog blog;
+//    @ManyToOne
+//    @JoinColumn(name = "blog_id")
+//    private Blog blog;
 
 }

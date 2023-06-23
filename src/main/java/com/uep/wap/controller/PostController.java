@@ -1,8 +1,10 @@
 package com.uep.wap.controller;
 
 import com.uep.wap.model.Account;
+import com.uep.wap.model.Comment;
 import com.uep.wap.model.Post;
 import com.uep.wap.service.AccountService;
+import com.uep.wap.service.CommentService;
 import com.uep.wap.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -24,6 +28,8 @@ public class PostController {
     private PostService postService;
     @Autowired
     private AccountService accountService;
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping("/posts/{id}")
     public String getPost(@PathVariable Long id, Model model) {
@@ -31,8 +37,12 @@ public class PostController {
         Optional<Post> optionalPost = postService.getPostById(id);
         //jeśli post istnieje, dodaj go do modelu
         if (optionalPost.isPresent()) {
+            //post
         Post post = optionalPost.get();
         model.addAttribute("post", post);
+        //komentarze po id posta
+        List<Comment> comments = commentService.getComments(id);
+        model.addAttribute("comments", comments);
         return "post";
         } else {
             return "404";
@@ -70,6 +80,51 @@ public class PostController {
         return "redirect:/posts/" + post.getId();
     }
 
+    @PostMapping("/posts/{id}/comment")
+    public String saveComment(@ModelAttribute Post post, @ModelAttribute Comment comment) {
+        System.out.println("zapisuje");
+        comment.setCreatedAt(LocalDateTime.now());
+        comment.setPost(post);
+        commentService.save(comment);
+        return "redirect:/posts/" + post.getId();
+    }
+
+    @GetMapping("/posts/{id}/comment")
+    @PreAuthorize("isAuthenticated()")
+    public String getCommentPost(@PathVariable Long id, Model model, Principal principal, @ModelAttribute Comment comment){
+        //szukanie posta po id
+        Optional<Post> optionalPost = postService.getPostById(id);
+
+        String authUsername = "anonymousUser";
+        if (principal != null) {
+            authUsername = principal.getName();
+        }
+        Optional<Account> optionalAccount = accountService.findByUsername(authUsername);
+        if (optionalAccount.isPresent() && optionalPost.isPresent()) {
+            Post post = optionalPost.get();
+            comment.setAccount(optionalAccount.get());
+            comment.setPost(post);
+            model.addAttribute("comment", comment);
+        }
+
+        if (optionalPost.isPresent()) {
+            Post post = optionalPost.get();
+
+            model.addAttribute("post", post);
+            System.out.println("tu jestem");
+            return "post_comment";
+        } else {
+            return "404";
+        }
+    }
+
+    @GetMapping("/posts/")
+    public String home(Model model) {
+        List<Post> posts = postService.getAllPosts();
+        model.addAttribute("posts", posts);
+        return "home";
+    }
+
     @GetMapping("/posts/{id}/edit")
     @PreAuthorize("isAuthenticated()")
     public String getPostForEdit(@PathVariable Long id, Model model){
@@ -95,6 +150,9 @@ public class PostController {
             if (!existingPost.getAccount().getUsername().equals(authentication.getName())) {
                 return "post_badAccess.html";
             }
+//            if (!existingPost.getAccount().getUsername().equals(authentication.getPrincipal())) {
+//                return "post_badAccess.html";
+//            }
             existingPost.setTitle(post.getTitle());
             existingPost.setContent(post.getContent());
 

@@ -25,26 +25,13 @@
         <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/posts/' + ${post.id} + '/delete'}"><button type="submit">Delete</button></a></li>
     </ul>
   <hr/>
-<!--    placeholder komentowania - zmienic -->
-    <div sec:authorize="isAuthenticated()">
-    <form action="#"
-          th:action="@{'/posts/create'}"
-          th:object="${post}"
-          method="POST">
-        <input type="hidden" th:field="*{account}" />
-        <input type="hidden" th:field="*{createdAt}" />
-        <h2>Add comment</h2>
-        <div>
-            <label for="new-post-title">Title</label>
-            <input id="new-post-title" type="text" th:field="*{title}" placeholder="Title"/>
-        </div>
-        <div>
-            <label for="new-post-body">Body</label>
-            <textarea id="new-post-body" th:field="*{content}"></textarea>
-        </div>
-        <button type="submit">Comment</button>
-    </form>
+    <div class = "comments" th:each="comment : ${comments}">
+        <h5 th:text="'Author: ' + ${comment.account.username}">Account username</h5>
+        <h5 th:text="'Time: ' + ${comment.createdAt}">Created At</h5>
+        <p th:text="${comment.text}">content text</p>
+        </hr>
     </div>
+    <a th:href="@{'/posts/' + ${post.id} + '/comment'}"><button type="submit">Comment</button></a>
 </div>
 </body>
 </html>

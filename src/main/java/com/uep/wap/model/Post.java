@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -50,6 +51,9 @@ public class Post {
     @JoinColumn(name = "account_id", referencedColumnName = "id", nullable=false)
     private Account account;
 
+
+    @OneToMany(mappedBy = "post")
+    private List<Comment> comments;
 
 
 }
