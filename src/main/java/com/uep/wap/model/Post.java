@@ -28,9 +28,14 @@ public class Post {
     @Column(nullable = false)
     private String content;
 
+    @Column(nullable = false)
+    private int views = 0;
+
+    @Column(nullable = false)
+    private int likes = 0;
     @CreationTimestamp
     private LocalDateTime createdAt;
-
+    @CreationTimestamp
     private LocalDateTime updatedAt;
     @Override
     public String toString() {

@@ -43,6 +43,10 @@ public class PostController {
         //komentarze po id posta
         List<Comment> comments = commentService.getComments(id);
         model.addAttribute("comments", comments);
+
+        post.setViews(post.getViews() + 1);
+        postService.save(post);
+        
         return "post";
         } else {
             return "404";
@@ -174,6 +178,22 @@ public class PostController {
 
             postService.delete(post);
             return "redirect:/";
+        } else {
+            return "404";
+        }
+    }
+
+    @GetMapping("/posts/{id}/like")
+    @PreAuthorize("isAuthenticated()")
+    public String likePost(@PathVariable Long id) {
+
+        // find post by id
+        Optional<Post> optionalPost = postService.getPostById(id);
+        if (optionalPost.isPresent()) {
+            Post post = optionalPost.get();
+            post.setLikes(post.getLikes() + 1);
+            postService.save(post);
+            return "redirect:/posts/" + post.getId();
         } else {
             return "404";
         }
