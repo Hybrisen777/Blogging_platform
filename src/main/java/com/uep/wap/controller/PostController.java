@@ -183,6 +183,22 @@ public class PostController {
         }
     }
 
+//    @GetMapping("/posts/{id}/deleteComment")
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+//    public String deleteComment(@PathVariable Long id) {
+//
+//        // find post by id
+//        Optional<Comment> optionalComment = commentService.getCommentById(id);
+//        if (optionalComment.isPresent()) {
+//            Comment comment = optionalComment.get();
+//
+//            commentService.deleteComment(comment);
+//            return "redirect:/";
+//        } else {
+//            return "404";
+//        }
+//    }
+
     @GetMapping("/posts/{id}/like")
     @PreAuthorize("isAuthenticated()")
     public String likePost(@PathVariable Long id) {
