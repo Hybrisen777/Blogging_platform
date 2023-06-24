@@ -29,6 +29,9 @@
       <button type="submit">Register</button>
     </form>
   <hr/>
+  <div class = "error" th:if="${errorMessage}">
+    <div th:text="${errorMessage}"></div>
+  </div>
 </div>
 </body>
 </html>

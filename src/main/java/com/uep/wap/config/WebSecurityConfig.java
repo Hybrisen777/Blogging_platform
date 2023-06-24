@@ -30,7 +30,6 @@ public class WebSecurityConfig {
         http
                 .authorizeRequests()
                 .antMatchers(AUTH_WHITELIST).permitAll()
-                .antMatchers("/icon.png").permitAll()
                 .antMatchers(HttpMethod.GET,"/posts/*").permitAll()
                 .anyRequest().authenticated();
         http

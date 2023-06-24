@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,9 +20,11 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @NotEmpty(message = "User's name cannot be empty.")
     @Column(name = "username")
     private String username;
 
+    @NotEmpty(message = "User's password cannot be empty.")
     @Column(name = "password")
     private String password;
 
