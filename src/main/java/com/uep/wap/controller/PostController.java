@@ -32,7 +32,7 @@ public class PostController {
     private CommentService commentService;
 
     @GetMapping("/posts/{id}")
-    public String getPost(@PathVariable Long id, Model model) {
+    public String getPost(@PathVariable Long id, Model model, Principal principal) {
         //szukanie posta po id
         Optional<Post> optionalPost = postService.getPostById(id);
         //jeśli post istnieje, dodaj go do modelAttribute żeby był widoczny w html
@@ -42,6 +42,13 @@ public class PostController {
         //komentarze po id posta
         List<Comment> comments = commentService.getComments(id);
         model.addAttribute("comments", comments);
+
+        //dodawanie nazwy uzytkownika wchodzacego w post do modelu
+        String authUsername = "anonymousUser";
+        if (principal != null) {
+            authUsername = principal.getName();
+        }
+        model.addAttribute("authUsername", authUsername);
 
         post.setViews(post.getViews() + 1);
         postService.save(post);
@@ -75,6 +82,7 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String saveNewPost(@ModelAttribute Post post, Principal principal) {
+        //TODO usunac to albo poprawic
         String authUsername = "anonymousUser";
         if (principal != null) {
             authUsername = principal.getName();
@@ -133,7 +141,7 @@ public class PostController {
     public String getPostForEdit(@PathVariable Long id, Model model, Authentication authentication){
         //szukanie posta po id
         Optional<Post> optionalPost = postService.getPostById(id);
-        //jeśli post istnieje, dodaj go do modelu
+        //jeśli post istnieje, dodaj go do modelu w html
         if (optionalPost.isPresent()) {
             Post post = optionalPost.get();
             if (!post.getAccount().getUsername().equals(authentication.getName())) {
