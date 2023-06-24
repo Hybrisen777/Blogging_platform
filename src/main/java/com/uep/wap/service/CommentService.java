@@ -27,6 +27,7 @@ public class CommentService {
         commentRepository.save(comment);
     }
 
+    //TODO dodac usuwanie komentarzy z usuwanego posta
     public Optional<Comment> getCommentById(Long id) {
         return commentRepository.findById(id);
     }

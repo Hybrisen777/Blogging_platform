@@ -1,6 +1,7 @@
 package com.uep.wap.service;
 
 import com.uep.wap.model.Post;
+import com.uep.wap.repository.CommentRepository;
 import com.uep.wap.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,9 @@ import java.util.Optional;
 public class PostService {
     @Autowired
     private PostRepository postRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
 
     public List<Post> getAllPosts() {
         return postRepository.findAll();
@@ -34,6 +38,8 @@ public class PostService {
     }
 
     public void delete(Post post){
+        //TODO dodac usuwanie komentarzy z usuwanego posta
+        //commentRepository.deleteByPostId(post.getId());
         postRepository.delete(post);
     }
 
