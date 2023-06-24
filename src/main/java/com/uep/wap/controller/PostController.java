@@ -35,9 +35,8 @@ public class PostController {
     public String getPost(@PathVariable Long id, Model model) {
         //szukanie posta po id
         Optional<Post> optionalPost = postService.getPostById(id);
-        //jeśli post istnieje, dodaj go do modelu
+        //jeśli post istnieje, dodaj go do modelAttribute żeby był widoczny w html
         if (optionalPost.isPresent()) {
-            //post
         Post post = optionalPost.get();
         model.addAttribute("post", post);
         //komentarze po id posta
@@ -131,12 +130,15 @@ public class PostController {
 
     @GetMapping("/posts/{id}/edit")
     @PreAuthorize("isAuthenticated()")
-    public String getPostForEdit(@PathVariable Long id, Model model){
+    public String getPostForEdit(@PathVariable Long id, Model model, Authentication authentication){
         //szukanie posta po id
         Optional<Post> optionalPost = postService.getPostById(id);
         //jeśli post istnieje, dodaj go do modelu
         if (optionalPost.isPresent()) {
             Post post = optionalPost.get();
+            if (!post.getAccount().getUsername().equals(authentication.getName())) {
+                return "post_badAccess.html";
+            }
             model.addAttribute("post", post);
             return "post_edit";
         } else {

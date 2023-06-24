@@ -31,6 +31,8 @@ public class Post {
     @Column(nullable = false)
     private int views = 0;
 
+    //TODO dodac obiekt z użytkownikiem i postem oraz booleanem czy like czy nie,
+    // który bedzie dodawany do listy, na podstawie której będzie liczona ilość likeów
     @Column(nullable = false)
     private int likes = 0;
     @CreationTimestamp
