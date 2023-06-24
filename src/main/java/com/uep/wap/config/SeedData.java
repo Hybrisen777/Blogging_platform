@@ -84,7 +84,7 @@ public class SeedData implements CommandLineRunner {
 
              //dodawanie komentarzy
              Comment comment1 = new Comment();
-             comment1.setText("testowy komentarz");
+             comment1.setText("Test comment");
              comment1.setAccount(account2);
              comment1.setPost(post1);
              commentService.save(comment1);
