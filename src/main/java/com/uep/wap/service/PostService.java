@@ -1,5 +1,6 @@
 package com.uep.wap.service;
 
+import com.uep.wap.model.Comment;
 import com.uep.wap.model.Post;
 import com.uep.wap.repository.CommentRepository;
 import com.uep.wap.repository.PostRepository;
@@ -37,9 +38,14 @@ public class PostService {
         return postRepository.save(post);
     }
 
+    public List<Comment> getComments(Long postId) {
+        return commentRepository.findByPostId(postId);
+    }
+
     public void delete(Post post){
-        //TODO dodac usuwanie komentarzy z usuwanego posta
-        //commentRepository.deleteByPostId(post.getId());
+        //usuwanie wszystkich komentazry z posta
+        getComments(post.getId()).forEach(comment -> commentRepository.delete(comment));
+        //usuwanie posta
         postRepository.delete(post);
     }
 

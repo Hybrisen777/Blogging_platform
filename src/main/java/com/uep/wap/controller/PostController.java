@@ -82,11 +82,7 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String saveNewPost(@ModelAttribute Post post, Principal principal) {
-        //TODO usunac to albo poprawic
-        String authUsername = "anonymousUser";
-        if (principal != null) {
-            authUsername = principal.getName();
-        }
+
         postService.save(post);
         return "redirect:/posts/" + post.getId();
     }
