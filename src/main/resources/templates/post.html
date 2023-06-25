@@ -35,7 +35,7 @@
         <h5 th:text="'Author: ' + ${comment.account.username}">Account username</h5>
         <h5 th:text="'Time: ' + ${comment.createdAt}">Created At</h5>
         <p th:text="${comment.text}">content text</p>
-        </hr>
+        <hr class="hr2"/>
     </div>
     <a th:href="@{'/posts/' + ${post.id} + '/comment'}"><button type="submit">Comment</button></a>
 </div>

@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<hr/>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,6 +10,22 @@
   <link rel="shortcut icon" type="image/png" th:href="@{/icon.png}"/>
 </head>
 <body>
+
+<ul th:class="ul2">
+  <li><a class="active" th:href="@{/}">Home</a></li>
+  <div sec:authorize="!isAuthenticated()">
+  <li><a th:href="@{/register}" th:class="link">Register</a></li>
+  <li><a th:href="@{/login}" th:class="link">Login</a></li>
+  </div>
+  <div sec:authorize="isAuthenticated()">
+  <li><a th:href="@{/posts/create}" th:class="link">Create new post</a></li>
+    <form th:action="@{/logout}"
+          method="POST">
+    <li><button th:class="button2" type="submit" >Logout</button></li>
+    </form>
+  </div>
+</ul>
+
 <div class="container">
   <div>
     <h1><a th:href="@{/}">Web Application Project Blogging Platform</a></h1>
@@ -26,11 +41,14 @@
     <form th:action="@{/logout}"
           method="POST">
       <div>
-        <label>Hello, <span sec:authentication="name">nazwa_uzytkownika</span></label>
-        <h2><a th:href="@{/posts/create}" th:class="link">Create</a></h2>
+        <label class="welcome">Hello, <span sec:authentication="name">nazwa_uzytkownika</span></label>
       </div>
       <button type="submit">Logout</button>
     </form>
+  </div>
+  <div sec:authorize="isAuthenticated()">
+    <hr/>
+    <h2><a th:href="@{/posts/create}" th:class="link">Create new post</a></h2>
   </div>
   <hr/>
   <div class="posts-container">
@@ -42,6 +60,7 @@
         <h5 th:text="'Tags: ' + ${post.tag}">tags</h5>
         <p th:text="${post.content}">body text</p>
         <br>
+        <hr class="hr2"/>
     </div>
   </div>
   <hr/>

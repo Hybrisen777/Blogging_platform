@@ -31,11 +31,11 @@ body a:hover {
     text-decoration: underline;
 }
 
-.link {
-    display: inline;
-    white-space: nowrap;
-}
-button[type="submit"] {
+/*.link {*/
+/*    display: inline;*/
+/*    white-space: nowrap;*/
+/*}*/
+button{
     background-color: darkblue;
     border: none;
     color: white;
@@ -48,9 +48,9 @@ button[type="submit"] {
     cursor: pointer;
 }
 
-ul {
-    list-style: none;
-}
+/*ul {*/
+/*    list-style: none;*/
+/*}*/
 
 h3 {
     font-size: 20px;
@@ -61,4 +61,56 @@ h3 {
     color: red;
     font-size: 27px;
     font-family: "Arial", sans-serif;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 50px;
+    font-family: "Arial", sans-serif;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #04AA6D;
+}
+
+.button2 {background-color: #4CAF50; /* Green */
+    border: 1px solid green;
+    color: white;
+    padding: 20px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    cursor: pointer;
+    float: left;
+}
+
+.welcome{
+    font-size: 30px;
+    font-family: "Arial", sans-serif;
+    display: inline;
+}
+
+.hr2 {
+    border: 1px solid black;
 }
